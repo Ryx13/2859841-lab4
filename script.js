@@ -7,7 +7,7 @@ const errorMessage = document.getElementById('error-message');
 
 async function searchCountry(countryName) {
     try {
-        // Reset UI
+       
         errorMessage.classList.add('hidden');
         countryInfo.classList.add('hidden');
         borderSection.classList.add('hidden');
@@ -24,7 +24,7 @@ async function searchCountry(countryName) {
         const data = await response.json();
         const country = data[0];
 
-        // Display main country info
+       
         countryInfo.innerHTML = `
             <h2>${country.name.common}</h2>
             <p><strong>Capital:</strong> ${country.capital ? country.capital[0] : "N/A"}</p>
@@ -34,7 +34,7 @@ async function searchCountry(countryName) {
         `;
         countryInfo.classList.remove('hidden');
 
-        // Display bordering countries
+ 
         if (country.borders) {
             for (let code of country.borders) {
                 const borderResponse = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
@@ -59,12 +59,12 @@ async function searchCountry(countryName) {
     }
 }
 
-// Click event
+
 button.addEventListener('click', () => {
     searchCountry(input.value.trim());
 });
 
-// Enter key event
+
 input.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         searchCountry(input.value.trim());
